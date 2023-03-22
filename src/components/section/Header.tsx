@@ -1,10 +1,25 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const Router = useRouter()
+    const isNewContractPage:boolean = Router.pathname === '/newContract'
 
+    if(isNewContractPage){
+        return (
+            <header className="w-full bg-gray-800 text-gray-100 body-font mb-4 shadow-sm hidden md:block">
+                 <div className="container mx-auto flex justify-between items-center py-7 px-5">
+                     {/* Site logo and Name */}
+                    <Link href="/" className="flex flex-shrink-0 title-font font-medium items-center text-gray-900 md:mb-0">
+                    <span className="ml-3 text-xl text-gray-100 font-semibold antialiased">Navbar 1</span>
+                    </Link>
+                 </div>
+            </header>
+        )
+    }
   return (
     <header className="w-full bg-gray-800 text-gray-100 body-font mb-4 shadow-sm">
 
