@@ -1,4 +1,5 @@
 import { CURRENCY_LIST } from '@/data/CURRENCY_LIST'
+import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import BtnDeleteParticipant from './btn/BtnDeleteParticipant'
 
@@ -7,14 +8,21 @@ import BtnDeleteParticipant from './btn/BtnDeleteParticipant'
 const CardSplitBill = () => {
   const [arrParticipants, setArrParticipants] = useState<string[]>([])
 
+  const Router = useRouter()
   const handleDeleteParticipants = () => {
     let copy = [...arrParticipants]
     copy.pop()
     setArrParticipants(copy)
   }
 
+  const handleFormSubmit = (e: { preventDefault: () => void })=>{
+    e.preventDefault()
+    alert("clicked")
+  }
+
   return (
-    <form className="w-full m-auto flex-col justify-center border rounded py-2 px-4">
+    <form onSubmit={handleFormSubmit}>
+    <div className="w-full m-auto flex-col justify-center border rounded py-2 px-4">
 
       <div className='mb-3'>
         <label htmlFor="contractName" className="text-sm text-gray-700 font-medium">Contract Name</label>
@@ -65,6 +73,11 @@ const CardSplitBill = () => {
     </div>
     
     <button type='button' onClick={()=> setArrParticipants([...arrParticipants, 'participant'])}>Add Participant</button>
+
+  </div>
+      <div className='flex gap-2 my-3'>
+        <button type='submit' className='px-3 py-1 bg-orange-500 rounded text-white uppercase'>Create</button> or <button type='button'>Cancel</button>
+      </div>
   </form>
   )
 }
