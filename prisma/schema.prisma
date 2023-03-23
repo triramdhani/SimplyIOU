@@ -10,22 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User?   @relation(fields: [authorId], references: [id])
-  authorId  Int?
-}
-
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
-}
-
 model Splitbill {
   id           Int    @id @default(autoincrement())
   contractId   String @unique
@@ -37,6 +21,12 @@ model Splitbill {
   userAid     String
   userBname   String
   userBid     String
+  userCname   String?
+  userCid     String?
+  userDname   String?
+  userDid     String?
+  userEname   String?
+  userEid     String?
 }
 
 model Transaction {
@@ -45,6 +35,11 @@ model Transaction {
   contractId String?
   whoPaid    String
   forWhat    String
-  When       String?
+  date       String?
   divideCost String[]
+  userAcost  String
+  userBcost  String
+  userCcost  String?
+  userDcost  String?
+  userEcost  String?
 }
