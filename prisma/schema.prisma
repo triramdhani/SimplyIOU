@@ -24,3 +24,26 @@ model User {
   name  String?
   posts Post[]
 }
+
+model Splitbill {
+  id    Int     @id @default(autoincrement())
+  contractId String @unique
+  contractName String
+  currency String
+  
+  transaction Transaction[]
+  userAname String
+  userAid String
+  userBname String
+  userBid String
+}
+
+model Transaction {
+    id    Int     @id @default(autoincrement())
+    splitbill Splitbill? @relation(fields: [contractId], references: [contractId])
+    contractId String?
+    whoPaid String
+    forWhat String
+    When String?
+    divideCost String[]
+}
