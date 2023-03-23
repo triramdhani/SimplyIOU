@@ -9,6 +9,7 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 model Post {
   id        Int     @id @default(autoincrement())
   title     String
@@ -26,24 +27,24 @@ model User {
 }
 
 model Splitbill {
-  id    Int     @id @default(autoincrement())
-  contractId String @unique
+  id           Int    @id @default(autoincrement())
+  contractId   String @unique
   contractName String
-  currency String
-  
+  currency     String
+
   transaction Transaction[]
-  userAname String
-  userAid String
-  userBname String
-  userBid String
+  userAname   String
+  userAid     String
+  userBname   String
+  userBid     String
 }
 
 model Transaction {
-    id    Int     @id @default(autoincrement())
-    splitbill Splitbill? @relation(fields: [contractId], references: [contractId])
-    contractId String?
-    whoPaid String
-    forWhat String
-    When String?
-    divideCost String[]
+  id         Int        @id @default(autoincrement())
+  splitbill  Splitbill? @relation(fields: [contractId], references: [contractId])
+  contractId String?
+  whoPaid    String
+  forWhat    String
+  When       String?
+  divideCost String[]
 }
