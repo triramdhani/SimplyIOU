@@ -1,0 +1,45 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Splitbill {
+  id           Int    @id @default(autoincrement())
+  contractId   String @unique
+  contractName String
+  currency     String
+
+  transaction Transaction[]
+  userAname   String
+  userAid     String
+  userBname   String
+  userBid     String
+  userCname   String?
+  userCid     String?
+  userDname   String?
+  userDid     String?
+  userEname   String?
+  userEid     String?
+}
+
+model Transaction {
+  id         Int        @id @default(autoincrement())
+  splitbill  Splitbill? @relation(fields: [contractId], references: [contractId])
+  contractId String?
+  whoPaid    String
+  forWhat    String
+  date       String?
+  divideCost String[]
+  userAcost  String
+  userBcost  String
+  userCcost  String?
+  userDcost  String?
+  userEcost  String?
+}
