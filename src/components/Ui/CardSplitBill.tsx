@@ -3,16 +3,27 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import BtnDeleteParticipant from './btn/BtnDeleteParticipant'
 
-
+const errList = {
+  maxParticipants : 'MAX'
+}
+const errDefaultValue:String = errList.maxParticipants || ''
 
 const CardSplitBill = () => {
   const [arrParticipants, setArrParticipants] = useState<string[]>([])
+  const [err, setErr] = useState(errDefaultValue)
 
   const Router = useRouter()
   const handleDeleteParticipants = () => {
     let copy = [...arrParticipants]
     copy.pop()
     setArrParticipants(copy)
+  }
+  const handleAddParticipants = () => {
+    if(arrParticipants.length >= 3){
+      setErr(errList.maxParticipants)
+    }else {
+      setArrParticipants([...arrParticipants, 'participant'])
+    }
   }
 
   const handleFormSubmit = (e: { preventDefault: () => void })=>{
@@ -72,7 +83,7 @@ const CardSplitBill = () => {
       }
     </div>
     
-    <button type='button' onClick={()=> setArrParticipants([...arrParticipants, 'participant'])}>Add Participant</button>
+    <button type='button' onClick={handleAddParticipants}>Add Participant</button>
 
   </div>
       <div className='flex gap-2 my-3'>
