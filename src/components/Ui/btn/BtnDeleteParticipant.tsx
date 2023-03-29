@@ -11,7 +11,7 @@ const BtnDeleteParticipant = ({isDisabled,hadnleDeleteParticipantDtn}:IBtnDelete
         disabled={isDisabled}
         onClick={ hadnleDeleteParticipantDtn}
         type='button'
-        className='block'
+        className='block bg-red-600 text-slate-50 px-1 ml-2 font-semibold'
     >
         Delete
     </button>

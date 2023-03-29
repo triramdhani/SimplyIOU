@@ -33,6 +33,7 @@ const CardSplitBill = () => {
   const handleFormSubmit = (e: { preventDefault: () => void })=>{
     e.preventDefault()
     alert("clicked")
+    console.log(e)
   }
 
   return (
@@ -75,7 +76,7 @@ const CardSplitBill = () => {
       {arrParticipants.length >= 1 && 
         arrParticipants.map((item, index)=>{
           return (
-            <div key={item} className={'flex mb-2'}>
+            <div key={index + 2} className={'flex mb-2'}>
               <input type="text" id={`participant ${index + 2}`} name={`participant ${index + 2}`}
                 placeholder="Your friends name"
                 className="form-input w-full block shadow-sm border-0 border-b-2 border-gray-300 bg-gray-50 text-sm placeholder-gray-300 focus:border-yellow-500 focus:ring-0"
