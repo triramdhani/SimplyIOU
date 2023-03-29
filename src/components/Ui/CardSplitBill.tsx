@@ -2,6 +2,7 @@ import { CURRENCY_LIST } from '@/data/CURRENCY_LIST'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import BtnDeleteParticipant from './btn/BtnDeleteParticipant'
+import ModalErr from './modal/ModalErr'
 
 const errList = {
   maxParticipants : 'MAX'
@@ -10,7 +11,7 @@ const errDefaultValue:String = errList.maxParticipants || ''
 
 const CardSplitBill = () => {
   const [arrParticipants, setArrParticipants] = useState<string[]>([])
-  const [err, setErr] = useState(errDefaultValue)
+  const [err, setErr] = useState('')
 
   const Router = useRouter()
   const handleDeleteParticipants = () => {
@@ -18,9 +19,12 @@ const CardSplitBill = () => {
     copy.pop()
     setArrParticipants(copy)
   }
-  const handleAddParticipants = () => {
+  const handleAddParticipants = async() => {
     if(arrParticipants.length >= 3){
       setErr(errList.maxParticipants)
+      setTimeout(() => {
+        setErr('')
+      }, 5000);
     }else {
       setArrParticipants([...arrParticipants, 'participant'])
     }
@@ -82,8 +86,10 @@ const CardSplitBill = () => {
         })
       }
     </div>
-    
-    <button type='button' onClick={handleAddParticipants}>Add Participant</button>
+    <div className='relative'>
+      {err === errList.maxParticipants && <ModalErr/> }
+      <button  type='button' onClick={handleAddParticipants} className='bg-green-500 font-semibold px-4  py-1 text-[14px] rounded-md'>Add Participant</button>
+    </div> 
 
   </div>
       <div className='flex gap-2 my-3'>
