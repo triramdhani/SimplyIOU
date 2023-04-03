@@ -3,8 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import BtnDeleteParticipant from './btn/BtnDeleteParticipant'
 import ModalErr from './modal/ModalErr'
-import { Console } from 'console'
-
+import {customAlphabet, nanoid} from 'nanoid'
 const errList = {
   maxParticipants : 'MAX'
 }
@@ -37,6 +36,9 @@ const CardSplitBill = () => {
       setArrParticipants([...arrParticipants, ''])
     }
   }
+  const handleSelectCurrency = (e:any) => {
+    setCurrency(e.target.value)
+  }
 
   const handleParticipantInputChange = (e: any, index:number) => {
     console.log(index)
@@ -60,12 +62,17 @@ const CardSplitBill = () => {
         break;
     }
   }
-  const handleFormSubmit = (e: { preventDefault: () => void })=>{
+  const handleFormSubmit = async(e: { preventDefault: () => void })=>{
     e.preventDefault()
     // alert("clicked")
-    const contractId = "dsfklfdskl"
-    const userAid = ""
-    const userBid = ""
+    const customNanoId = (size:number) => {
+      const nanoid = customAlphabet('ABCDEFGHijklmnopqrstu1234567890', size)
+      return nanoid()
+    }
+
+    const contractId =  customNanoId(15)
+    const userAid = customNanoId(10)
+    const userBid = customNanoId(10)
     const data = {
       contratId : contractId,
       contractName : contractName,
@@ -93,9 +100,9 @@ const CardSplitBill = () => {
       </div>
       <div className='mb-3'>
         <label htmlFor="currency" className="text-sm text-gray-700 font-medium">Currency</label>
-        <select name="" id="" className='block shadow-sm border-0 border-b-2 border-gray-300 bg-gray-50 text-sm placeholder-gray-300 focus:border-yellow-500 focus:ring-0'>
+        <select name="" id="" onChange={handleSelectCurrency} value={currency} className='block shadow-sm border-0 border-b-2 border-gray-300 bg-gray-50 text-sm placeholder-gray-300 focus:border-yellow-500 focus:ring-0'>
             {CURRENCY_LIST.map((option, index) => (
-              <option value={option} key={index + 2}  className="font-semibold ">{option}</option>
+              <option value={option} key={index + 2} className="font-semibold ">{option}</option>
             ))
             }
           </select>
