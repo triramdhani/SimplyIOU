@@ -3,7 +3,8 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import BtnDeleteParticipant from './btn/BtnDeleteParticipant'
 import ModalErr from './modal/ModalErr'
-import {customAlphabet, nanoid} from 'nanoid'
+import {customAlphabet} from 'nanoid'
+
 const errList = {
   maxParticipants : 'MAX'
 }
@@ -19,10 +20,28 @@ const CardSplitBill = () => {
   const [participant5, setParticipant5] = useState('')
   const [contractName, setContractName] = useState('')
   const [currency, setCurrency] = useState(CURRENCY_LIST[0])
-  // const []
+  
   const Router = useRouter()
-  const handleDeleteParticipants = () => {
+
+  const handleDeleteParticipants = async() => {
     let copy = [...arrParticipants]
+    const participantLength = copy.length
+    const removeParticipantState = () => {
+      switch (participantLength) {
+        case 3:
+          setParticipant3('')
+          break
+        case 4:
+          setParticipant4('')
+          break
+        case 5:
+          setParticipant5('')
+          break
+        default:
+          break;
+      }
+    }
+    removeParticipantState()
     copy.pop()
     setArrParticipants(copy)
   }
@@ -71,18 +90,35 @@ const CardSplitBill = () => {
     }
 
     const contractId =  customNanoId(15)
-    const userAid = customNanoId(10)
-    const userBid = customNanoId(10)
+    const userAid = `#${customNanoId(10)}`
+    const userBid = `#${customNanoId(10)}`
     const data = {
       contratId : contractId,
       contractName : contractName,
       currency : currency,
       userAname : participant1,
       userAid : userAid,
-      participant2 : participant2,
+      userBname : participant2,
       userBid : userBid
     }
-    // if(participant3 !== '') 
+    if(participant3 !== ''){
+      Object.assign(data, {
+        userCid : `#${customNanoId(10)}`,
+        userCname : participant3
+      })
+    } 
+    if(participant4 !== ''){
+      Object.assign(data, {
+        userDid : `#${customNanoId(10)}`,
+        userDname : participant4
+      })
+    } 
+    if(participant5 !== ''){
+      Object.assign(data, {
+        userEid : `#${customNanoId(10)}`,
+        userEname : participant5
+      })
+    } 
     console.log(data)
   }
 
@@ -115,7 +151,7 @@ const CardSplitBill = () => {
           const isDeleteBtnDisabled:boolean = index === 0 || index === 1  
           return (
             <div key={index} className={'flex mb-2'}>
-              <input type="text" id={`participant ${index + 1}`} name={`participant ${index + 1}`}
+              <input type="text" id={`participant${index + 1}`} name={`participant${index + 1}`}
                 onChange={(e)=> handleParticipantInputChange(e,index)}
                 placeholder="Your friends name"
                 className="form-input w-full block shadow-sm border-0 border-b-2 border-gray-300 bg-gray-50 text-sm placeholder-gray-300 focus:border-yellow-500 focus:ring-0"
