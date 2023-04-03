@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@apollo/client': ^3.7.10
+  '@hookform/resolvers': ^3.0.0
   '@prisma/client': ^4.11.0
   '@tailwindcss/forms': ^0.5.3
   '@types/node': ^18.14.6
@@ -23,14 +24,17 @@ specifiers:
   prisma: ^4.11.0
   react: 18.2.0
   react-dom: 18.2.0
+  react-hook-form: ^7.43.9
   tailwindcss: ^3.2.7
   ts-node: ^10.9.1
   typescript: ^4.9.5
   use-local-storage: ^2.3.6
+  zod: ^3.21.4
   zustand: ^4.3.6
 
 dependencies:
   '@apollo/client': 3.7.10_gdcq4dv6opitr3wbfwyjmanyra
+  '@hookform/resolvers': 3.0.0_react-hook-form@7.43.9
   '@prisma/client': 4.11.0_prisma@4.11.0
   graphql: 16.6.0
   graphql-yoga: 3.7.3_graphql@16.6.0
@@ -38,7 +42,9 @@ dependencies:
   next: 13.2.3_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-hook-form: 7.43.9_react@18.2.0
   use-local-storage: 2.3.6_react@18.2.0
+  zod: 3.21.4
   zustand: 4.3.6_react@18.2.0
 
 devDependencies:
@@ -327,6 +333,14 @@ packages:
     dependencies:
       '@repeaterjs/repeater': 3.0.4
       tslib: 2.5.0
+    dev: false
+
+  /@hookform/resolvers/3.0.0_react-hook-form@7.43.9:
+    resolution: {integrity: sha512-SQPefakODpyq25b/phHXDKCdRrEfPcCXV7B4nAa139wE1DxufYbbNAjeo0T04ZXBokRxZ+wD8iA1kkVMa3QwjQ==}
+    peerDependencies:
+      react-hook-form: ^7.0.0
+    dependencies:
+      react-hook-form: 7.43.9_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.11.8:
@@ -3275,6 +3289,15 @@ packages:
       scheduler: 0.23.0
     dev: false
 
+  /react-hook-form/7.43.9_react@18.2.0:
+    resolution: {integrity: sha512-AUDN3Pz2NSeoxQ7Hs6OhQhDr6gtF9YRuutGDwPQqhSUAHJSgGl2VeY3qN19MG0SucpjgDiuMJ4iC5T5uB+eaNQ==}
+    engines: {node: '>=12.22.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -4036,6 +4059,10 @@ packages:
 
   /zen-observable/0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
+    dev: false
+
+  /zod/3.21.4:
+    resolution: {integrity: sha512-m46AKbrzKVzOzs/DZgVnG5H55N1sv1M8qZU3A8RIKbs3mrACDNeIOeilDymVb2HdmP8uwshOCF4uJ8uM9rCqJw==}
     dev: false
 
   /zustand/4.3.6_react@18.2.0:

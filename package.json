@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.10",
+    "@hookform/resolvers": "^3.0.0",
     "@prisma/client": "^4.11.0",
     "graphql": "^16.6.0",
     "graphql-yoga": "^3.7.3",
@@ -20,7 +21,9 @@
     "next": "13.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
     "use-local-storage": "^2.3.6",
+    "zod": "^3.21.4",
     "zustand": "^4.3.6"
   },
   "devDependencies": {
